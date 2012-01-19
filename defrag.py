@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 '''
 Defrag
 
@@ -14,4 +15,6 @@ if __name__ == '__main__':
     parser.add_argument('--input', required=False, help='Input file for the disk (if not specified, will read from disk.txt)')
     args = parser.parse_args()
 
+    inputFilename = 'disk.txt' if args.input == None else args.input
 
+    print "Input: {0}".format(inputFilename)
