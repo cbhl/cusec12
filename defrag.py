@@ -18,3 +18,4 @@ if __name__ == '__main__':
     inputFilename = 'disk.txt' if args.input == None else args.input
 
     print "Input: {0}".format(inputFilename)
+
