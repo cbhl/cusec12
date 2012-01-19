@@ -4,7 +4,7 @@ Created on Dec 19, 2011
 @author: menard
 '''
 
-import defrag_disk
+from strategy import defrag_disk
 
 def calculateScore(disk):
     return avgFreeSpaceRangeNormalized(disk) * 2500.0 + avgSeeksPerFileNormalized(disk) * 7500.0
