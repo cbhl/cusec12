@@ -1,1 +1,4 @@
-__all__ = ['BaseStrategy']
+__all__ = [
+    'BaseStrategy',
+    'SleepStrategy',
+    ]

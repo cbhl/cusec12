@@ -32,6 +32,7 @@ if __name__ == '__main__':
 
     signal.signal(signal.SIGALRM, timeout_handler)
     signal.alarm(295) # five minutes, minus a five second buffer
+    # signal.alarm(30)
 
     try:
     
@@ -39,6 +40,7 @@ if __name__ == '__main__':
     
         strategies = []
         strategies.append(BaseStrategy.BaseStrategy())
+        strategies.append(SleepStrategy.SleepStrategy())
     
         inputFile = open(inputFilename)
     
