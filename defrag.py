@@ -10,8 +10,15 @@ Waterloo Software Engineering
 
 from strategy import *
 
+class TimeoutException(Exception):
+    pass
+
 if __name__ == '__main__':
     import argparse
+    import signal
+    
+    def timeout_handler(signum, frame):
+        raise TimeoutException()
 
     parser = argparse.ArgumentParser(
         description='defragments a fictional file system'
@@ -23,25 +30,31 @@ if __name__ == '__main__':
         )
     args = parser.parse_args()
 
-    inputFilename = 'disk.txt' if args.input == None else args.input
+    signal.signal(signal.SIGALRM, timeout_handler)
+    signal.alarm(295) # five minutes, minus a five second buffer
 
-    strategies = []
-    strategies.append(BaseStrategy.BaseStrategy())
-
-    inputFile = open(inputFilename)
-
-    bestResult = []
-
-    for line in inputFile:
-        for strategy in strategies:
-            strategy.readline(line)
-    for strategy in strategies:
-        # FIXME Add timeout
-        strategy.calculate()
-        result = strategy.result()
-        # FIXME evaluate which strategy is best
-        if True:
-            bestResult = result
+    try:
     
+        inputFilename = 'disk.txt' if args.input == None else args.input
+    
+        strategies = []
+        strategies.append(BaseStrategy.BaseStrategy())
+    
+        inputFile = open(inputFilename)
+    
+        bestResult = []
+    
+        for line in inputFile:
+            for strategy in strategies:
+                strategy.readline(line)
+        for strategy in strategies:
+            strategy.calculate()
+            result = strategy.result()
+            # FIXME evaluate which strategy is best
+            if True:
+                bestResult = result
+    except TimeoutException:
+        pass; # fall through to returning the result
+
     # FIXME output in correct format
     print bestResult
