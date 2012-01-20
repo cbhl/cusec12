@@ -8,6 +8,7 @@ Waterloo Software Engineering
 @author Michael Chang, Alice Yuan, Joshua Kaplin, Aaron Morais
 '''
 
+import defrag_scorer
 from strategy import *
 
 class TimeoutException(Exception):
@@ -40,17 +41,14 @@ if __name__ == '__main__':
     
         strategies = []
         strategies.append(BaseStrategy.BaseStrategy())
-        strategies.append(SleepStrategy.SleepStrategy())
-    
-        inputFile = open(inputFilename)
+        # strategies.append(SleepStrategy.SleepStrategy())
+
+        disk = defrag_scorer.loadDisk(inputFilename)
     
         bestResult = []
     
-        for line in inputFile:
-            for strategy in strategies:
-                strategy.readline(line)
         for strategy in strategies:
-            strategy.calculate()
+            strategy.calculate(disk)
             result = strategy.result()
             # FIXME evaluate which strategy is best
             if True:

@@ -1,8 +1,5 @@
 class BaseStrategy:
-    def readline(self,line):
-        pass
-
-    def calculate(self):
+    def calculate(self, disk):
         pass
 
     def result(self):
