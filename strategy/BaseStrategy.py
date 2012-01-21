@@ -1,6 +1,6 @@
 class BaseStrategy:
     def calculate(self, disk):
-        pass
+        return disk
 
     def result(self):
         return []

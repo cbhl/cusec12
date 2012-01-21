@@ -41,20 +41,25 @@ if __name__ == '__main__':
 
         strategies = []
         strategies.append(BaseStrategy.BaseStrategy())
+        strategies.append(MoveToFrontStrategy.MoveToFrontStrategy())
         # strategies.append(SleepStrategy.SleepStrategy())
 
         bestResult = []
+        disk = defrag_scorer.loadDisk(inputFilename)
+        bestScore = defrag_scorer.calculateScore(disk)
     
         for strategy in strategies:
             disk = defrag_scorer.loadDisk(inputFilename)
-            strategy.calculate(disk)
+            final_disk = strategy.calculate(disk)
             result = strategy.result()
-            # FIXME evaluate which strategy is best
-            if True:
+            score = defrag_scorer.calculateScore(final_disk)
+            if score > bestScore or len(result) < len(bestResult):
                 bestResult = result
+                bestScore = score
     except TimeoutException:
         pass; # fall through to returning the result
 
-    # FIXME output in correct format
-    print bestResult
+    # output
+    for line in bestResult:
+        print line
 
