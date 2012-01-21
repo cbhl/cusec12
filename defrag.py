@@ -40,9 +40,10 @@ if __name__ == '__main__':
         inputFilename = 'disk.txt' if args.input == None else args.input
 
         strategies = []
-        strategies.append(BaseStrategy.BaseStrategy())
+        #strategies.append(BaseStrategy.BaseStrategy())
         strategies.append(MoveToFrontStrategy.MoveToFrontStrategy())
         strategies.append(MoveToEndStrategy.MoveToEndStrategy())
+        strategies.append(QuickSortBaseStrategy.QuickSortBaseStrategy())
         # strategies.append(SleepStrategy.SleepStrategy())
 
         bestResult = []
