@@ -42,6 +42,7 @@ if __name__ == '__main__':
         strategies = []
         strategies.append(BaseStrategy.BaseStrategy())
         strategies.append(MoveToFrontStrategy.MoveToFrontStrategy())
+        strategies.append(MoveToEndStrategy.MoveToEndStrategy())
         # strategies.append(SleepStrategy.SleepStrategy())
 
         bestResult = []
