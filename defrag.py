@@ -38,16 +38,15 @@ if __name__ == '__main__':
     try:
     
         inputFilename = 'disk.txt' if args.input == None else args.input
-    
+
         strategies = []
         strategies.append(BaseStrategy.BaseStrategy())
         # strategies.append(SleepStrategy.SleepStrategy())
 
-        disk = defrag_scorer.loadDisk(inputFilename)
-    
         bestResult = []
     
         for strategy in strategies:
+            disk = defrag_scorer.loadDisk(inputFilename)
             strategy.calculate(disk)
             result = strategy.result()
             # FIXME evaluate which strategy is best
